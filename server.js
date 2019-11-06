@@ -1,19 +1,14 @@
 var http = require('http');
-var fs = require('fs')
-  var server = http.createServer(function(req, res){
-    
+var express = require('express');
+var app = express();
+var server = http.Server(app);
 
-    fs.readFile('index.html', function(err,data){
-        if(err){
-                res.statusCode = 400;
-                res.json({'err':'File not found'})
-        }
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
-        res.end(data)
-    })
-    //res.end("Hello World\n");
-  });
+app.get('/',function(request,response){
+  response.sendFile(__dirname+'/index.html')
+})
+app.get('/second',function(request,response){
+  response.sendFile(__dirname+'/second.html')
+})
   server.listen(3000, 'localhost', function(){
     console.log('Server running');
   });
