@@ -5,10 +5,10 @@ var server = http.Server(app);
 var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({extended:true}))
 
-app.post('/submit'),function(request,response){
+app.post('/submit',function(request,response){
   console.log(request.body)
   response.json({msg:"successfully received"})
-}
+})
 
 app.get('/',function(request,response){
   response.sendFile(__dirname+'/index.html')
