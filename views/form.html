@@ -19,10 +19,11 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
     <script>
-        var article = {title:'',content:''}
-        article.title = $("#title").val()
-        article.content = $("#content").val()
+        var article = {}
+        
         $('#submit-btn').click(function(){
+            article.title = $("#title").val()
+        article.content = $("#content").val()
             $.ajax({
             method:"POST",
             url:'/submit',
