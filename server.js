@@ -64,12 +64,20 @@ app.post('/submit',function(request,response){
 }) 
 
 app.get('/article/:index',function(request,response){
- if(articles[request.params.index]){
+ if(request.params.index){
    //response.json(articles[request.params])
-   response.render('article.ejs',{article:articles[request.params.index]})
+   //response.render('article.ejs',{article:articles[request.params.index]})
+   Article.find({'_id': request.params.index},function(err,data){
+     if(err){
+       console.log(err)
+       return response.status(400).json({msg:'could not not query the id'})
+
+     }
+     return response.render('article.ejs',{article:data[0]})
+   })
  }
  else{
-   response.json({msg:"Article not found"})
+   return response.json({msg:"Article not found"})
  }
 })
 
